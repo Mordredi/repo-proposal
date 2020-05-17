@@ -56,7 +56,7 @@ try {
   const setupPy = fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py')).toString();
   console.log(setupPy)
   const versionMatch = setupPy.match(/version\s*=\s*[\'"]([^\'"]*)[\'"]/);
-  const version =  version[1].replace('\'','');
+  const version =  versionMatch[1].replace('\'','');
   core.setOutput('version', version);
   console.log(`The version: ${version}`);
 } catch (error) {
