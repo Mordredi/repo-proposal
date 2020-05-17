@@ -58,6 +58,8 @@ async function run() {
     const octokit = new github.GitHub(myToken);
     const owner = github.context.payload.repository.owner.login;
     const pullNumber = github.context.payload.number;
+    console.log(process.env.GITHUB_REPOSITORY);
+
     const { data: pullRequest } = await octokit.pulls.get({
         owner,
         repo: process.env.GITHUB_REPOSITORY,
