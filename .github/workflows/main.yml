@@ -2,6 +2,9 @@
 
 name: CI
 
+defaults:
+  working-directory: ui
+
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
@@ -21,6 +24,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
+      
       uses: ./.github/actions/ui-version
       id: ui
       with:
