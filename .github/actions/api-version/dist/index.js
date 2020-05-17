@@ -55,14 +55,10 @@ try {
   const configPath = core.getInput('path');
   const setupPy = fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py')).toString();
   console.log(setupPy)
-  const version = setupPy.match(/version\s*=\s*[\'"]([^\'"]*)[\'"]/);
-  console.log(version);
-  const altVersion = /version\s*=\s*[\'"]([^\'"]*)[\'"]/.exec(setupPy);
-  console.log(altVersion);
-  if (version.length) {
-    core.setOutput('version', version[0])
-    console.log(`The version: ${version[0]}`);
-  }
+  const versionMatch = setupPy.match(/version\s*=\s*[\'"]([^\'"]*)[\'"]/);
+  const version =  version[1].replace('\'','');
+  core.setOutput('version', version);
+  console.log(`The version: ${version}`);
 } catch (error) {
   core.setFailed(error.message);
 }
