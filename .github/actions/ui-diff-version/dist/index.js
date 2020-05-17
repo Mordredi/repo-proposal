@@ -56,18 +56,17 @@ async function run() {
     // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
     const myToken = core.getInput('myToken');
     const octokit = new github.GitHub(myToken);
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
-    // const { data: pullRequest } = await octokit.pulls.get({
-    //     owner: 'octokit',
-    //     repo: process.env.GITHUB_REPOSITORY,
-    //     pull_number: 123,
-    //     mediaType: {
-    //       format: 'diff'
-    //     }
-    // });
+    console.log(github.context);
+    const pullNumber = github.context.payload.number;
+    const { data: pullRequest } = await octokit.pulls.get({
+        repo: process.env.GITHUB_REPOSITORY,
+        pull_number: pullNumber,
+        mediaType: {
+          format: 'diff'
+        }
+    });
 
-    // console.log(pullRequest);
+    console.log(pullRequest);
 }
 
 run();
