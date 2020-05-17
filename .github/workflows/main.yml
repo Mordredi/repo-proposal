@@ -7,15 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+
     - name: Node Version
-      uses: actions/checkout@v2
       uses: ./.github/actions/ui-version
       id: ui
       with:
         path: "./ui"
 
     - name: Python Version
-      uses: actions/checkout@v2
       uses: ./.github/actions/api-version
       id: api 
       with:
