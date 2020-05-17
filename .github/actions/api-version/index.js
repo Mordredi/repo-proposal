@@ -6,6 +6,7 @@ const fs = require('fs');
 try {
   const configPath = core.getInput('path');
   const setupPy = fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py')).toString();
+  console.log(setupPy)
   const version = setupPy.search('version\s*=\s*[\'"]([^\'"]*)[\'"]');
   core.setOutput('version', version)
   console.log(`The version: ${version}`);
