@@ -1,13 +1,13 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'JS version'
+description: 'package.json version'
 inputs:
   path:  # id of input
-    description: 'Who to greet'
+    description: 'path to package json'
     required: true
     default: '.'
 outputs:
-  time: # id of output
-    version: 'The version'
+  version: 
+    description: 'ui version'
 runs:
   using: 'node12'
   main: 'index.js'

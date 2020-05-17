@@ -1,0 +1,13 @@
+name: 'Python version'
+description: 'get version from setup.py'
+inputs:
+  path:  # id of input
+    description: 'path to setup.py'
+    required: true
+    default: '.'
+outputs:
+  version: 
+    description: 'python version'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
