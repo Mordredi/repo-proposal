@@ -1,0 +1,23 @@
+name: Test Workflow Push
+
+on:
+  pull:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: UI diff
+      uses: ./.github/actions/ui-diff-version
+      id: ui
+      with:
+        myToken: ${{ secrets.GITHUB_TOKEN }}
+
+    # - name: Python Version
+    #   uses: ./.github/actions/api-version
+    #   id: api 
+    #   with:
+    #     path: "./api"
+

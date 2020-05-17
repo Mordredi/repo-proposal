@@ -1,0 +1,12 @@
+name: 'JS version'
+description: 'package.json version'
+inputs:
+  myToken:  # id of input
+    description: 'github token'
+    required: true
+outputs:
+  version: 
+    description: 'ui version'
+runs:
+  using: 'node12'
+  main: 'index.js'
