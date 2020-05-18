@@ -9,19 +9,21 @@ async function run () {
     const configPath = core.getInput('path');
     exec.exec('pipenv --version');
     exec.exec('ansible --version');
-    let version = ''
+    let version = '';
+    let error = '';
     const options = {};
     options.listeners = {
       stdout: (data) => {
         myOutput += data.toString();
       },
       stderr: (data) => {
-        myError += data.toString();
+        error += data.toString();
       }
     }
     const setupPy = path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py');
     await exec.exec(`pipenv run python ${setupPy} --version`, [], options);
     console.log(version);
+    console.lof(`error: ${error}`);
     core.setOutput('version', version);
     console.log(`The version: ${version}`);
   } catch (error) {
