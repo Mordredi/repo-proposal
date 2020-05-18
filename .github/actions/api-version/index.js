@@ -14,7 +14,7 @@ async function run () {
     const options = {};
     options.listeners = {
       stdout: (data) => {
-        myOutput += data.toString();
+        version += data.toString();
       },
       stderr: (data) => {
         error += data.toString();
