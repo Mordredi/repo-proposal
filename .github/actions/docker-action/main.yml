@@ -14,5 +14,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.version }}
+    # - ${{ inputs.version }}
     - ${{ inputs.name }}
