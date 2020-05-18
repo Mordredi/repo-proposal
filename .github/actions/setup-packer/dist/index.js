@@ -48,12 +48,12 @@ module.exports =
 
 const core = __webpack_require__(684);
 const tc = __webpack_require__(404);
-const path = __webpack_require__(622);
-const fs = __webpack_require__(747);
+const exec = __webpack_require__(356);
 
 async function run() {
   try {
-    const packerPath = await tc.downloadTool('https://releases.hashicorp.com/packer/1.3.5/packer_1.3.5_linux_amd64.zip');
+    exec.exec('aws --version');
+    const packerPath = await tc.downloadTool('https://releases.hashicorp.com/packer/1.3.5/packer_1.3.5_linux_amd64.tar.gz');
     const packerPathExractedFolder = await tc.extractTar(packerPath);
     core.addPath(packerPathExractedFolder);
     console.log(packerPathExractedFolder);
