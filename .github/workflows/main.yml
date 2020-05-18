@@ -22,8 +22,8 @@ jobs:
         path: "./api"
 
     - name: Python AMI
-        uses: ./.github/actions/docker-action
-        id: python-ami
-        with:
-          name: "iai-api"
-          version: "${{ steps.api.outputs.version }}"
+      uses: ./.github/actions/docker-action
+      id: python-ami
+      with:
+        name: "iai-api"
+        version: "${{ steps.api.outputs.version }}"
