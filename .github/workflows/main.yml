@@ -21,6 +21,10 @@ jobs:
       with:
         path: "./api"
 
+    - name: Configure AWS
+      uses: aws-actions/configure-aws-credentials@v1
+      aws-region: ca-central-1
+
     - name: Python AMI
       uses: ./.github/actions/docker-action
       id: python-ami
