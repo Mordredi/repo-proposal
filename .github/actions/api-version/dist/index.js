@@ -50,13 +50,15 @@ const core = __webpack_require__(684);
 const github = __webpack_require__(483);
 const path = __webpack_require__(622);
 const fs = __webpack_require__(747);
+const exec = __webpack_require__(813);
 
 try {
   const configPath = core.getInput('path');
-  const setupPy = fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py')).toString();
-  console.log(setupPy)
-  const versionMatch = setupPy.match(/version\s*=\s*[\'"]([^\'"]*)[\'"]/);
-  const version =  versionMatch[1].replace('\'','');
+  exec.exec('pipenv --version');
+  exec.exec('ansible --version');
+  const setupPy = path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py');
+  const version = exec.exec(`pipenv run python ${setupPy} --version`);
+  console.log(version);
   core.setOutput('version', version);
   console.log(`The version: ${version}`);
 } catch (error) {
@@ -22543,6 +22545,14 @@ function resolveCommand(parsed) {
 }
 
 module.exports = resolveCommand;
+
+
+/***/ }),
+
+/***/ 813:
+/***/ (function(module) {
+
+module.exports = eval("require")("@actions/exec");
 
 
 /***/ }),

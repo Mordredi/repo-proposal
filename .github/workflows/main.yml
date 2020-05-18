@@ -14,6 +14,14 @@ jobs:
       id: ui
       with:
         path: "./ui"
+    
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.6.8'
+      run: |
+        pip install pipenv
+        pip install ansible
 
     - name: Python Version
       uses: ./.github/actions/api-version
