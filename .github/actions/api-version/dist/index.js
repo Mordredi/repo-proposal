@@ -71,7 +71,7 @@ async function run () {
     const setupPy = path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py');
     await exec.exec(`pipenv run python ${setupPy} --version`, [], options);
     console.log(version);
-    console.lof(`error: ${error}`);
+    console.log(`error: ${error}`);
     core.setOutput('version', version);
     console.log(`The version: ${version}`);
   } catch (error) {
