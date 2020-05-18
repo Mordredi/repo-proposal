@@ -1,0 +1,8 @@
+name: 'Setup packer'
+description: 'get version from setup.py'
+outputs:
+  version: 
+    description: 'python version'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
