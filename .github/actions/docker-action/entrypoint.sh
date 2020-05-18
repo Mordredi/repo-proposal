@@ -1,9 +1,4 @@
 #!/bin/sh -l
-printenv
 echo *
-echo "$1"
-echo "$2"
-version = $1
-name = $2
-ami_name="${name}-${version}"
+ami_name="$INPUT_NAME-$INPUT_VERSION"
 echo "::set-output amiName=ami_name::$ami_name"
