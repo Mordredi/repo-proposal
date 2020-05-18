@@ -28,6 +28,15 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ca-central-1
 
+    - name: Setup Packer
+      uses: ./.github/actions/setup-packer
+
+    - name: Use Packer
+      run: |
+        which packer
+        packer --version
+        aws --version
+
 
     - name: Python AMI
       uses: ./.github/actions/docker-action
