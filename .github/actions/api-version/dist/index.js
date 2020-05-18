@@ -52,19 +52,22 @@ const path = __webpack_require__(622);
 const fs = __webpack_require__(747);
 const exec = __webpack_require__(356);
 
-try {
-  const configPath = core.getInput('path');
-  exec.exec('pipenv --version');
-  exec.exec('ansible --version');
-  const setupPy = path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py');
-  const version = exec.exec(`pipenv run python ${setupPy} --version`);
-  console.log(version);
-  core.setOutput('version', version);
-  console.log(`The version: ${version}`);
-} catch (error) {
-  core.setFailed(error.message);
+async function run () {
+  try {
+    const configPath = core.getInput('path');
+    exec.exec('pipenv --version');
+    exec.exec('ansible --version');
+    const setupPy = path.resolve(process.env.GITHUB_WORKSPACE, configPath, './setup.py');
+    const version = await exec.exec(`pipenv run python ${setupPy} --version`);
+    console.log(version);
+    core.setOutput('version', version);
+    console.log(`The version: ${version}`);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
 
+run();
 
 /***/ }),
 
